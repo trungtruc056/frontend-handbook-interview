@@ -190,36 +190,153 @@ div {
 
 ### 1. Javascript vs Typescript
 
+[Read more](https://www.guru99.com/typescript-vs-javascript.html#:~:text=KEY%20DIFFERENCE,doesn't%20support%20this%20feature.)
+
 ### 2. Promise vs Async/ await
+
+[Read more](https://www.freecodecamp.org/news/async-await-and-promises/)
 
 ### 3. How to catch a error of a promise
 
+```
+async function errorExample() {
+  try {
+    const rejectedPromise = await Promise.reject("Oh-oh!");
+  } catch (error) {
+    console.log(error); // "Uh-oh!"
+  }
+}
+
+errorExample();
+```
+
+[Read more](https://www.freecodecamp.org/news/async-await-and-promises/)
+
 ### 4. Var, let, const
 
-### 5. Can replace the value in object declared with const?
+[Read more](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/)
+
+### 5. Can replace the value in object or array declared with const?
+
+When you're adding to an array or object you're not re-assigning or re-declaring the constant, it's already declared and assigned, you're just adding to the "list" that the constant points to.
+
+So this works fine:
+
+```
+const x = {};
+
+x.foo = 'bar';
+
+console.log(x); // {foo : 'bar'}
+
+x.foo = 'bar2';
+
+console.log(x); // {foo : 'bar2'}
+```
+
+and this:
+
+```
+const y = [];
+
+y.push('foo');
+
+console.log(y); // ['foo']
+
+y.unshift("foo2");
+
+console.log(y); // ['foo2', 'foo']
+
+y.pop();
+
+console.log(y); // ['foo2']
+```
+
+but neither of these:
+
+```
+const x = {};
+x = {foo: 'bar'}; // error - re-assigning
+
+const y = ['foo'];
+const y = ['bar']; // error - re-declaring
+
+const foo = 'bar';
+foo = 'bar2';       // error - can not re-assign
+var foo = 'bar3';   // error - already declared
+function foo() {};  // error - already declared
+```
+
+[Read more](https://stackoverflow.com/questions/23436437/why-can-i-change-value-of-a-constant-in-javascript#:~:text=The%20properties%20of%20the%20object%20itself%20are%20free%20to%20change.&text=The%20const%20declaration%20creates%20a,variable%20identifier%20cannot%20be%20reassigned.)
 
 ### 6. Closure
 
-### 7. map, filter, reduce, split, slice, splice, find,...
+[Read more](https://www.freecodecamp.org/news/javascript-closure-tutorial-with-js-closure-example-code/)
 
 ### 8. map vs filter vs reduce
 
+[Read more](https://www.freecodecamp.org/news/javascript-map-reduce-and-filter-explained-with-examples/)
+
 ### 9. splice vs slice
 
+- `splice()` changes the original array whereas `slice()` doesn't but both of them returns array object.
+- The `splice()` method returns the removed item(s) in an array and `slice()` method returns the selected element(s) in an array, as a new array object.
+- The `splice()` method changes the original array and `slice()` method doesn't change the original array.
+- You can insert item in the array while using `splice()` but `slice()` only removes item.
+
+#### Example:
+
+```
+var array=[1,2,3,4,5];
+console.log(array.splice(2));
+```
+
+This will return `[3,4,5]`. The **original array is affected** resulting in `array` being `[1,2]`.
+
+```
+var array=[1,2,3,4,5]
+console.log(array.slice(2));
+```
+
+This will return `[3,4,5]`. The **original array is NOT affected** with resulting in `array` being `[1,2,3,4,5]`.
+
+Below is simple fiddle which confirms this:
+
+```
+
+//splice
+var array=[1,2,3,4,5];
+console.log(array.splice(2));
+
+//slice
+var array2=[1,2,3,4,5]
+console.log(array2.slice(2));
+
+console.log("----after-----");
+console.log(array);
+console.log(array2);
+
+```
+
 ### 10. Javascript Prototypes
+
+[Read more](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
 
 ### 11. Implement find function for it works with IE 10.
 
 ## 📘 ReactJS
 
 ### 1. What is jsx file?
+
 - JSX stands for JavaScript XML.
 - JSX allows us to write HTML in React.
 - JSX makes it easier to write and add HTML in React.
 
 ```
+
 const myelement = <h1>I Love JSX!</h1>;
 ReactDOM.render(myelement, document.getElementById('root'));
+
 ```
 
 > Browsers can't read JSX tags because JSX is not a regular object in javascript. Basically, it's a popular new dialect that simply integrates HTML templates into Javascript code. Requires WebPack or Babel to compile it to Javascript code for browser can be read.
@@ -227,48 +344,61 @@ ReactDOM.render(myelement, document.getElementById('root'));
 [Read more](https://reactjs.org/docs/introducing-jsx.html)
 
 ### 3. Functional Component (Stateless) vs Class Component (Statefull)
+
 #### Render JSX
+
 ```
+
 import React from "react";
 
 function FunctionalComponent() {
- return <h1>Hello, world</h1>;
+return <h1>Hello, world</h1>;
 }
+
 ```
 
 ```
+
 import React, { Component } from "react";
 
 class ClassComponent extends Component {
- render() {
-   return <h1>Hello, world</h1>;
- }
+render() {
+return <h1>Hello, world</h1>;
 }
+}
+
 ```
 
 #### Passing props
+
 ```
+
 const FunctionalComponent = (props) => {
- return <h1>Hello, {props.name}</h1>;
+return <h1>Hello, {props.name}</h1>;
 };
+
 ```
 
 ```
+
 class ClassComponent extends React.Component {
-  render() {
-    const { name } = this.props;
-    return <h1>Hello, { name }</h1>;
- }
+render() {
+const { name } = this.props;
+return <h1>Hello, { name }</h1>;
 }
+}
+
 ```
 
 #### Handling state
 
 ```
-const FunctionalComponent = () => {
- const [count, setCount] = React.useState(0);
 
- return (
+const FunctionalComponent = () => {
+const [count, setCount] = React.useState(0);
+
+return (
+
    <div>
      <p>count: {count}</p>
      <button onClick={() => setCount(count + 1)}>Click</button>
@@ -300,6 +430,7 @@ class ClassComponent extends React.Component {
 ```
 
 #### Lifecycle Methods
+
 #### 1. On Mounting (componentDidMount)
 
 ```
@@ -384,27 +515,29 @@ The below table will guide you about the changing in props and state.
 ![alt text](https://res.cloudinary.com/djeghcumw/image/upload/v1559793682/blog/1_cEWErpe-oY-_S1dOaT1NtA.jpg "React Life Cycle")
 
 #### Summary
+
 - React component lifecycle has three categories – Mounting, Updating and Unmounting.
 - The render() is the most used lifecycle method.
-  + It is a pure function.
-  + You cannot set state in render()
+  - It is a pure function.
+  - You cannot set state in render()
 - The componentDidMount() happens as soon as your component is mounted.
-  + You can set state here but with caution.
+  - You can set state here but with caution.
 - The componentDidUpdate() happens as soon as the updating happens.
-  + You can set state here but with caution.
+  - You can set state here but with caution.
 - The componentWillUnmount() happens just before the component unmounts and is destroyed.
-  + This is a good place to cleanup all the data.
-  + You cannot set state here.
+  - This is a good place to cleanup all the data.
+  - You cannot set state here.
 - The shouldComponentUpdate() can be used rarely.
-  + It can be called if you need to tell React not to re-render for a certain state or prop change.
-  + This needs to be used with caution only for certain performance optimizations.
+  - It can be called if you need to tell React not to re-render for a certain state or prop change.
+  - This needs to be used with caution only for certain performance optimizations.
 - The two new lifecycle methods are getDerivedStateFromProps() and getSnapshotBeforeUpdate().
-  + They need to be used only occasionally.
-  + Not many examples are out there for these two methods and they are still being discussed and will have more references in the future.
+  - They need to be used only occasionally.
+  - Not many examples are out there for these two methods and they are still being discussed and will have more references in the future.
 
 [Read more](https://programmingwithmosh.com/javascript/react-lifecycle-methods/)
 
 ### 6. What is function replace to `componentDidMount` in react hooks?
+
 ```
 useEffect(() => {
   console.log('This is componentDidMount in react hooks!')
@@ -414,12 +547,15 @@ useEffect(() => {
 [Read more](https://reactjs.org/docs/hooks-reference.html#useeffect)
 
 ### 7. useState, useEffect, useCallBack, useMemo,...
+
 [Read more](https://reactjs.org/docs/hooks-reference.html)
 
 ## 📘 REST API
 
 ### 1. How many methods in the RESTful API?
+
 There are 5 main methods in RESTful API:
+
 - `HTTP GET`: **retrieve resource representation/information only** – and not to modify it in any way.
 - `HTTP POST`: Use POST APIs to **create new subordinate resources**, e.g., a file is subordinate to a directory containing it or a row is subordinate to a database table.
 - `HTTP PUT`: Use PUT APIs primarily **to update existing resource** (if the resource does not exist, then API may decide to create a new resource or not).
@@ -427,19 +563,19 @@ There are 5 main methods in RESTful API:
 - `HTTP PATCH`: HTTP PATCH requests are **to make partial update on a resource**.
 
 | HTTP METHOD |         CRUD          |                                        ENTIRE COLLECTION (E.G. /USERS) / SPECIFIC ITEM (E.G. /USERS/123) |
-| ----------- | :-------------------: | -------------------------------------------------------------------------------------------------------: |
+| ----------- | :-------------------: | -------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------ |
 | POST        |        Create         |                             201 (Created), ‘Location’ header with link to /users/{id} containing new ID. | Avoid using POST on single resource                                            |
 | GET         |         Read          |                    200 (OK), list of users. Use pagination, sorting and filtering to navigate big lists. | 200 (OK), single user. 404 (Not Found), if ID not found or invalid.            |
 | PUT         |    Update/Replace     | 405 (Method not allowed), unless you want to update every resource in the entire collection of resource. | 200 (OK) or 204 (No Content). Use 404 (Not Found), if ID not found or invalid. |
 | PATCH       | Partial Update/Modify |                               405 (Method not allowed), unless you want to modify the collection itself. | 200 (OK) or 204 (No Content). Use 404 (Not Found), if ID not found or invalid. |
 | DELETE      |        Delete         |             405 (Method not allowed), unless you want to delete the whole collection — use with caution. | 200 (OK). 404 (Not Found), if ID not found or invalid.                         |
 
-
 [Read more](https://restfulapi.net/http-methods/)
 
 ### 2. How to apply the token to `Axios` and use it to every where in your project?
 
 #### Use [axios interceptors](https://github.com/axios/axios#interceptors) to intercept any requests and add authorization headers.
+
 ```
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
@@ -451,7 +587,9 @@ axios.interceptors.request.use(function (config) {
 ```
 
 #### Set default header which will be sent with every request you make.
+
 ```
 axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 ```
+
 [Read more](https://stackoverflow.com/questions/43051291/attach-authorization-header-for-all-axios-requests)
