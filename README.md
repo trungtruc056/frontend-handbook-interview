@@ -1,3 +1,12 @@
+# Table of Contents
+
+1. [Browser](#browser)
+2. [CSS](#css)
+3. [HTML](#html)
+4. [Javascript](#javascript)
+5. [ReactJS](#reactjs)
+6. [RESTful API](#restful-api)
+
 ## 📘 Browser
 
 ### 1. What happens when you type in a URL?
@@ -550,7 +559,7 @@ useEffect(() => {
 
 [Read more](https://reactjs.org/docs/hooks-reference.html)
 
-## 📘 REST API
+## 📘 RESTful API
 
 ### 1. How many methods in the RESTful API?
 
